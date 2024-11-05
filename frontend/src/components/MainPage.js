@@ -5,7 +5,7 @@ function MainPage() {
   return (
     <div>
       <h1>South Africa's Electronic voting System</h1>
-      <p>Choose an option below:</p>
+      <p>Powered by blockchain</p>
       <div>
         <Link to="/login">
           <button>Login</button>

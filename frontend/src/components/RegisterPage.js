@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function RegisterPage() {
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [idNumber, setIdNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -22,11 +26,47 @@ function RegisterPage() {
       <h1>Register</h1>
       <form onSubmit={handleRegister}>
         <div>
+          <label>Name:</label>
+          <input
+            type="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Surname:</label>
+          <input
+            type="surname"
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
+            required
+          />
+        </div>
+        <div>
           <label>Email:</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Phone Number:</label>
+          <input
+            type="phoneNumber"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>ID Number:</label>
+          <input
+            type="idNumber"
+            value={idNumber}
+            onChange={(e) => setIdNumber(e.target.value)}
             required
           />
         </div>
