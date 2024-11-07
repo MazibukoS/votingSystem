@@ -1,24 +1,54 @@
 // src/components/RegisterPage.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 function RegisterPage() {
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstname, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [emailAddress, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [idNumber, setIdNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    console.log("Registered with:", { email, password });
+
     // Handle registration logic here
+    const user = {
+      firstname: firstname,
+      surname: surname,
+      password: password,
+      emailAddress: emailAddress,
+      phoneNumber: phoneNumber,
+      idNumber: idNumber,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+        
+      });
+
+      if (response.ok) {
+        toast.success("Registered Successfully");
+      } else {
+        toast.error("Unable to Register user");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Something went wrong");
+    }
   };
 
   return (
@@ -28,8 +58,8 @@ function RegisterPage() {
         <div>
           <label>Name:</label>
           <input
-            type="name"
-            value={name}
+            type="firstname"
+            value={firstname}
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -46,8 +76,8 @@ function RegisterPage() {
         <div>
           <label>Email:</label>
           <input
-            type="email"
-            value={email}
+            type="emailAddress"
+            value={emailAddress}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -93,6 +123,7 @@ function RegisterPage() {
       <p>
         Already have an account? <Link to="/login">Login</Link>
       </p>
+        <ToastContainer/>
     </div>
   );
 }

@@ -1,14 +1,35 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     console.log("Logged in with:", { email, password });
     // Handle login logic here
+
+        try {
+      const response = await fetch("http://localhost:8080/api/user/login", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(email,password),
+      });
+
+      if (response.ok) {
+        navigate("/home", { state: { userData: response } }); 
+      } else {
+        toast.error("Unable to Login");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Something went wrong");
+    }
   };
 
   return (
