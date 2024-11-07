@@ -1,0 +1,33 @@
+.icon-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow the icons to wrap to the next row */
+  justify-content: center; /* Center the icons */
+  gap: 20px; /* Space between the icons */
+  padding: 20px;
+}
+
+.icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.icon-link:hover {
+  transform: scale(1.1); /* Scale effect on hover */
+}
+
+.icon {
+  font-size: 40px; /* Adjust the icon size */
+}
+
+span {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}

@@ -6,6 +6,9 @@ import MainPage from "./components/MainPage";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
+import CastVote from "./components/CastVote";
+import ElectionResults from "./components/ElectionResults";
+import RegisterToVote from "./components/RegisterToVote";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/cast-vote" element={<CastVote />} />
+        <Route path="/election-results" element={<ElectionResults />} />
+        <Route path="/vote-registration" element={<RegisterToVote />} />
       </Routes>
     </Router>
   );
